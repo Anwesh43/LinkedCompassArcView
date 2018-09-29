@@ -37,12 +37,12 @@ fun Canvas.drawCANode(i : Int, scale : Float, paint : Paint) {
         val deg : Float = oDeg + (destDeg - oDeg) * sc1
         save()
         scale(sf, 1f)
-        rotate(-deg)
         save()
-        translate((w - size) * sc2, 0f)
+        translate((w/2 - size) * sc2, 0f)
+        rotate(-deg)
         drawLine(0f, 0f, 0f, size, paint)
         restore()
-        drawArc(RectF(-r, -r, r, r), 90f - oDeg, oDeg, false, paint)
+        drawArc(RectF(-r, -r, r, r), 90f - deg, deg, false, paint)
         restore()
     }
     restore()
@@ -207,7 +207,7 @@ class CompassArcView(ctx : Context) : View(ctx) {
         fun create(activity : Activity) : CompassArcView {
             val view : CompassArcView = CompassArcView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
