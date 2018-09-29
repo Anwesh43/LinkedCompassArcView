@@ -177,4 +177,26 @@ class CompassArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CompassArcView) {
+
+        private val ca : CompassArc = CompassArc(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            ca.draw(canvas, paint)
+            animator.animate {
+                ca.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ca.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
