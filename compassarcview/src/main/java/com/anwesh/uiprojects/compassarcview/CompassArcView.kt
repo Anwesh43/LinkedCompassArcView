@@ -10,6 +10,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.content.Context
+import android.graphics.Color
 
 val nodes : Int = 5
 
@@ -22,6 +23,7 @@ fun Canvas.drawCANode(i : Int, scale : Float, paint : Paint) {
     paint.style = Paint.Style.STROKE
     paint.strokeWidth = Math.min(w, h) / 60
     paint.strokeCap = Paint.Cap.ROUND
+    paint.color = Color.parseColor("#9C27B0")
     save()
     translate(w/2, gap * i + gap)
     for (j in 0..1) {
@@ -43,4 +45,22 @@ fun Canvas.drawCANode(i : Int, scale : Float, paint : Paint) {
         restore()
     }
     restore()
+}
+
+class CompassArcView(ctx : Context) : View(ctx) {
+
+    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
