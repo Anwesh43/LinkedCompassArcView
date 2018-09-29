@@ -4,6 +4,7 @@ package com.anwesh.uiprojects.compassarcview
  * Created by anweshmishra on 29/09/18.
  */
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.graphics.Canvas
@@ -199,6 +200,14 @@ class CompassArcView(ctx : Context) : View(ctx) {
             ca.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : CompassArcView {
+            val view : CompassArcView = CompassArcView(activity)
+            activity.setContentView(view)
+            return view 
         }
     }
 }
